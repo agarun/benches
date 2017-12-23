@@ -7,6 +7,7 @@ class Api::SessionsController < ApplicationController
 
     if user.save
       login(user)
+      render "api/users/show"
     else
       render user.errors.full_messages
     end
