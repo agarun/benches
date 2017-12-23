@@ -5,6 +5,10 @@ import configureStore from './store/store';
 
 // dev
 import { login } from './actions/session_actions';
+import { fetchBenches } from './actions/bench_actions';
+import * as be from './util/bench_api_util';
+window.be = be;
+window.fetchBenches = fetchBenches;
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
