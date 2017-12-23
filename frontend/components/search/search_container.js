@@ -1,4 +1,4 @@
-import BenchIndex from './bench_index';
+import BenchIndex from '../benches/bench_index';
 import { connect } from 'react-redux';
 import { fetchBenches } from '../../actions/bench_actions';
 
