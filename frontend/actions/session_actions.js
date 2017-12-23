@@ -28,8 +28,6 @@ export const logout = () => dispatch => (
     .signout()
     .then(() => (
       dispatch(receiveCurrentUser(null))
-    ), error => (
-      dispatch(receiveErrors(error.responseJSON))
     ))
 );
 
