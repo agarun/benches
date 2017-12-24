@@ -3,6 +3,11 @@ class Api::BenchesController < ApplicationController
 
   def index
     @benches = bounds? ? Bench.in_bounds(params[:bounds]) : Bench.all
+    @benches.reject! do |bench|
+      (params['maxSeating'] && bench.seating > params['maxSeating'].to_i) ||
+        (params['minSeating'] && bench.seating < params['minSeating'].to_i)
+    end
+    # alternatively, query with @benches.where(seating: (min..max))
   end
 
   def show
@@ -22,7 +27,12 @@ class Api::BenchesController < ApplicationController
   private
 
   def bench_params
-    params.require(:bench).permit(:description, :lat, :lng, :seating)
+    params.require(:bench).permit(
+      :description,
+      :lat,
+      :lng,
+      :seating
+    )
   end
 
   def bounds?
