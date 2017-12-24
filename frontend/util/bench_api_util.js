@@ -20,3 +20,11 @@ export const createBench = data => (
     data
   })
 );
+
+export const createReview = data => (
+  $.ajax({
+    method: 'post',
+    url: '/api/reviews/',
+    data
+  })
+);

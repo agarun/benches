@@ -2,6 +2,7 @@ import * as BenchAPIUtil from '../util/bench_api_util';
 
 export const RECEIVE_BENCHES = 'RECEIVE_BENCHES';
 export const RECEIVE_BENCH = 'RECEIVE_BENCH';
+export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 export const receiveBenches = benches => ({
   type: RECEIVE_BENCHES,
@@ -40,5 +41,18 @@ export const fetchBench = benchId => dispatch => (
       dispatch(receiveBench(fetchedBench))
     ), error => (
       console.log(error)
+    ))
+);
+
+export const receiveReview = review => ({
+  type: RECEIVE_REVIEW,
+  review
+});
+
+export const createReview = review => dispatch => (
+  BenchAPIUtil
+    .createReview(review)
+    .then(fetchedReview => (
+      dispatch(receiveReview(fetchedReview))
     ))
 );
