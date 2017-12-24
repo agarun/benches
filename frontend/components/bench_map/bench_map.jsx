@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MarkerManager from '../../util/marker_manager';
+import { withRouter } from 'react-router-dom';
 
 const mapOptions = {
   center: {
@@ -14,10 +15,23 @@ class BenchMap extends Component {
   constructor(props) {
     super(props);
     this.updateMarkers = this.updateMarkers.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   updateMarkers(props) {
     this.MarkerManager.updateMarkers(props.benches);
+  }
+
+  handleClick(e) {
+    const coords = {
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+    };
+
+    this.props.history.push({
+      pathname: 'benches/new',
+      search: `lat=${coords.lat}&lng=${coords.lng}`,
+    });
   }
 
   // "React will call the ref callback with the DOM element when the
@@ -45,6 +59,8 @@ class BenchMap extends Component {
       };
       this.props.updateFilter('bounds', bounds);
     });
+
+    this.map.addListener('click', this.handleClick);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -64,4 +80,4 @@ class BenchMap extends Component {
 
 }
 
-export default BenchMap;
+export default withRouter(BenchMap);
