@@ -36,7 +36,9 @@ class BenchShow extends React.Component {
             flagSingleBench={true}
             fetchBench={this.props.fetchBench}
           />
-          <ReviewIndex />
+          <ReviewIndex
+            bench={bench}
+          />
           <ReviewForm />
         </div>
       );
