@@ -10,11 +10,11 @@ const benchesReducer = (state = {}, action) => {
     case RECEIVE_BENCHES:
       return action.benches;
     case RECEIVE_BENCH:
-      return action.bench;
+      return { [action.bench.id]: action.bench };
     case RECEIVE_REVIEW:
       const reviewBenchId = action.review.bench_id;
       const newState = Object.assign({}, state);
-      newState.reviews.push(action.review);
+      newState[reviewBenchId].reviews.push(action.review);
       return newState;
     default:
       return state;
