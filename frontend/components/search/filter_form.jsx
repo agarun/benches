@@ -21,6 +21,7 @@ class FilterForm extends React.Component {
           <input
             type="number"
             onChange={this.handleChange('minSeating')}
+            value={this.props.minSeating}
           />
         </label>
         <label>
@@ -28,6 +29,7 @@ class FilterForm extends React.Component {
           <input
             type="number"
             onChange={this.handleChange('maxSeating')}
+            value={this.props.maxSeating}
           />
         </label>
       </div>

@@ -4,7 +4,9 @@ import { fetchBenches } from '../../actions/bench_actions';
 import { updateFilter } from '../../actions/filter_actions';
 
 const mapStateToProps = state => ({
-  benches: state.entities.benches
+  benches: state.entities.benches,
+  minSeating: state.ui.filters.minSeating,
+  maxSeating: state.ui.filters.maxSeating,
 });
 
 const mapDispatchToProps = dispatch => ({
