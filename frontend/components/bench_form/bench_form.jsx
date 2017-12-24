@@ -10,6 +10,9 @@ class BenchForm extends Component {
       description: '',
       seating: 1,
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(field) {
@@ -18,9 +21,15 @@ class BenchForm extends Component {
     );
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.createBench(Object.assign({}, { bench: this.state }));
+    this.props.history.push('/');
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Description
           <input
@@ -54,7 +63,6 @@ class BenchForm extends Component {
       </form>
     );
   }
-
 }
 
 export default BenchForm;

@@ -73,7 +73,6 @@ class BenchMap extends Component {
         ref={map => this.mapNode = map}
         id="map-container"
       >
-
       </div>
     );
   }
