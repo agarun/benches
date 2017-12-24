@@ -5,6 +5,8 @@ const BenchIndexItem = ({ bench }) => (
     <strong>Description</strong>:
     <br />
     {bench.description}
+    <br />
+    Average Rating: {bench.average_rating}
   </p>
 );
 

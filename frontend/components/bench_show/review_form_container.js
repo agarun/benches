@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import ReviewForm from './review_form';
-import { createBench } from '../../actions/bench_actions';
+import { createReview } from '../../actions/bench_actions';
 
 const mapDispatchToProps = dispatch => ({
-  createBench: bench => dispatch(createBench(bench))
+  createReview: bench => dispatch(createReview(bench))
 });
 
 export default connect(

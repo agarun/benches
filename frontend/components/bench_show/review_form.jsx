@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ReviewForm extends React.Component {
   constructor(props) {
@@ -6,15 +7,21 @@ class ReviewForm extends React.Component {
 
     this.state = {
       rating: 5,
-      body: ''
+      body: '',
+      bench_id: parseInt(this.props.match.params.benchId)
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.createBench(
+    this.props.createReview(
       Object.assign({}, this.state)
+    ).then(
+      this.props.history.push(`/benches/${this.props.benchId}`)
     );
   }
 
@@ -42,9 +49,8 @@ class ReviewForm extends React.Component {
           Comment
           <textarea
             onChange={this.handleChange('body')}
-          >
-            {this.state.body}
-          </textarea>
+            value={this.state.body}
+          />
         </label>
 
         <button>Submit</button>
@@ -53,4 +59,4 @@ class ReviewForm extends React.Component {
   }
 }
 
-export default ReviewForm;
+export default withRouter(ReviewForm);

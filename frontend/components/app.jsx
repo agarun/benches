@@ -14,10 +14,10 @@ const App = () => (
       <GreetingContainer />
     </header>
 
-    <AuthRoute path="/login" component={SessionFormContainer} />
-    <AuthRoute path="/signup" component={SessionFormContainer} />
-    <Route exact path="/" component={SearchContainer} />
     <Switch>
+      <AuthRoute path="/login" component={SessionFormContainer} />
+      <AuthRoute path="/signup" component={SessionFormContainer} />
+      <Route exact path="/" component={SearchContainer} />
       <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
       <Route exact path="/benches/:benchId" component={BenchShowContainer} />
     </Switch>

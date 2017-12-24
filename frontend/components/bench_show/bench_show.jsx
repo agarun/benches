@@ -1,6 +1,5 @@
 import BenchMap from '../bench_map/bench_map';
-import ReviewForm from './review_form';
-import ReviewIndex from './review_index';
+import BenchReview from './bench_review';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,6 +26,7 @@ class BenchShow extends React.Component {
 
           <ul>
             <li>Description: {this.bench.description}</li>
+            <li>Average Rating: {this.bench.average_rating}</li>
             <li>Latitude: {this.bench.lat}</li>
             <li>Longitude: {this.bench.lng}</li>
             <li>Seating Capacity: {this.bench.seating}</li>
@@ -36,10 +36,10 @@ class BenchShow extends React.Component {
             flagSingleBench={true}
             fetchBench={this.props.fetchBench}
           />
-          <ReviewIndex
+          <BenchReview
             bench={bench}
+            benchId={this.props.benchId}
           />
-          <ReviewForm />
         </div>
       );
     }

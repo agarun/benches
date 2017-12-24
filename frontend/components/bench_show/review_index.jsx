@@ -1,13 +1,14 @@
 import React from 'react';
+import ReviewShow from './review_show';
 
-const ReviewIndex = ({ bench }) => (
+const ReviewIndex = ({ bench, benchId }) => (
   <div>
     {
-      bench.reviews.map((review) => (
-        <ul>
-          <li>Rating: {review.rating}</li>
-          <li>Body: {review.body}</li>
-        </ul>
+      bench[benchId].reviews.map((review) => (
+        <ReviewShow
+          review={review}
+          key={review.id}
+        />
       ))
     }
   </div>
