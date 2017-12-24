@@ -1,6 +1,7 @@
 class MarkerManager {
-  constructor(map) {
+  constructor(map, showOnClick) {
     this.map = map;
+    this.showOnClick = showOnClick;
     this.markers = {};
     this.updateMarkers = this.updateMarkers.bind(this);
     this.createMarkerFromBranch = this.createMarkerFromBranch.bind(this);
@@ -11,7 +12,7 @@ class MarkerManager {
 
     allBenchIds.forEach((benchId) => {
       if (!this.markers[benchId]) {
-        this.createMarkerFromBranch(benches[benchId]);
+        this.createMarkerFromBranch(benches[benchId], this.showOnClick);
       }
     });
 
@@ -36,6 +37,7 @@ class MarkerManager {
         },
         map: this.map
       });
+    this.markers[bench.id].addListener('click', () => this.showOnClick(bench));
   }
 }
 
