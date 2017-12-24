@@ -1,4 +1,6 @@
 class Api::BenchesController < ApplicationController
+  before_action :require_logged_in, only: [:create]
+
   def index
     @benches = bounds? ? Bench.in_bounds(params[:bounds]) : Bench.all
   end
@@ -8,6 +10,7 @@ class Api::BenchesController < ApplicationController
   end
 
   def create
+
   end
 
   private
