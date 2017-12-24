@@ -32,3 +32,13 @@ export const createBench = bench => dispatch => (
       console.log(error)
     ))
 );
+
+export const fetchBench = benchId => dispatch => (
+  BenchAPIUtil
+    .fetchBench(benchId)
+    .then(fetchedBench => (
+      dispatch(receiveBench(fetchedBench))
+    ), error => (
+      console.log(error)
+    ))
+);

@@ -6,6 +6,13 @@ export const fetchBenches = data => (
   })
 );
 
+export const fetchBench = benchId => (
+  $.ajax({
+    method: 'get',
+    url: `/api/benches/${benchId}`
+  })
+);
+
 export const createBench = data => (
   $.ajax({
     method: 'post',

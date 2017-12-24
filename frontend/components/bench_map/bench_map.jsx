@@ -16,6 +16,7 @@ class BenchMap extends Component {
     super(props);
     this.updateMarkers = this.updateMarkers.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleMarkerClick = this.handleMarkerClick.bind(this);
   }
 
   updateMarkers({ benches }) {
@@ -40,31 +41,43 @@ class BenchMap extends Component {
   // or componentDidUpdate lifecycle hooks."
   componentDidMount() {
     this.map = new google.maps.Map(this.mapNode, mapOptions);
-    this.MarkerManager = new MarkerManager(this.map);
+    this.MarkerManager = new MarkerManager(this.map, this.handleMarkerClick);
     this.updateMarkers(this.props);
 
-    this.map.addListener('idle', () => {
-      const { north, east, south, west } =
-        this.map.getBounds().toJSON();
+    if (!this.props.flagSingleBench) {
+      this.map.addListener('idle', () => {
+        const { north, east, south, west } =
+          this.map.getBounds().toJSON();
 
-      const bounds = {
-        northEast: {
-          lat: north,
-          lng: east
-        },
-        southWest: {
-          lat: south,
-          lng: west
-        }
-      };
-      this.props.updateFilter('bounds', bounds);
-    });
+        const bounds = {
+          northEast: {
+            lat: north,
+            lng: east
+          },
+          southWest: {
+            lat: south,
+            lng: west
+          }
+        };
+        this.props.updateFilter('bounds', bounds);
+      });
 
-    this.map.addListener('click', this.handleClick);
+      this.map.addListener('click', this.handleClick);
+    } else {
+      const benchId = parseInt(this.props.match.params.benchId);
+      this.map.panTo({
+        lat: this.props.benches[benchId].lat,
+        lng: this.props.benches[benchId].lng,
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.updateMarkers(nextProps);
+  }
+
+  handleMarkerClick(bench) {
+    this.props.history.push(`/benches/${bench.id}`);
   }
 
   render() {

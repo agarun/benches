@@ -3,7 +3,8 @@ import GreetingContainer from './greeting/greeting_container';
 import SessionFormContainer from './session/session_form_container';
 import SearchContainer from './search/search_container';
 import BenchFormContainer from './bench_form/bench_form_container';
-import { Route } from 'react-router-dom';
+import BenchShowContainer from './bench_show/bench_show_container';
+import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
@@ -16,7 +17,10 @@ const App = () => (
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
     <Route exact path="/" component={SearchContainer} />
-    <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
+    <Switch>
+      <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
+      <Route exact path="/benches/:benchId" component={BenchShowContainer} />
+    </Switch>
   </div>
 );
 
