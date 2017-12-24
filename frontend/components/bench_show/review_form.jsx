@@ -12,6 +12,7 @@ class ReviewForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.backToBench = this.backToBench.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -21,7 +22,7 @@ class ReviewForm extends React.Component {
     this.props.createReview(
       Object.assign({}, this.state)
     ).then(
-      this.props.history.push(`/benches/${this.props.benchId}`)
+      () => this.backToBench()
     );
   }
 
@@ -31,6 +32,10 @@ class ReviewForm extends React.Component {
         [field]: e.target.value
       })
     );
+  }
+
+  backToBench() {
+    this.props.history.push(`/benches/${this.props.benchId}`);
   }
 
   render() {

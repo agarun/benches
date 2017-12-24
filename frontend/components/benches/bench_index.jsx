@@ -6,7 +6,6 @@ class BenchIndex extends React.Component {
     return (
       Object.keys(this.props.benches).map(bench => (
         <BenchIndexItem
-          key={this.props.benches[bench].id}
           bench={this.props.benches[bench]}
         />
       ))
