@@ -18,8 +18,8 @@ class BenchMap extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  updateMarkers(props) {
-    this.MarkerManager.updateMarkers(props.benches);
+  updateMarkers({ benches }) {
+    this.MarkerManager.updateMarkers(benches);
   }
 
   handleClick(e) {
