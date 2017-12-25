@@ -14,6 +14,7 @@ class BenchForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   handleChange(field) {
@@ -26,6 +27,20 @@ class BenchForm extends Component {
     e.preventDefault();
     this.props.createBench(Object.assign({}, { bench: this.state }));
     this.props.history.push('/');
+  }
+
+  uploadImage(e) {
+    const CLOUDINARY_OPTIONS = {
+      cloud_name: "REDACTED",
+      upload_preset: "REDACTED"
+    }
+
+    e.preventDefault();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, (error, results) => {
+      if (!error) {
+        this.setState({ image_url: results[0].secure_url });
+      }
+    });
   }
 
   render() {
@@ -53,11 +68,11 @@ class BenchForm extends Component {
           />
         </label>
         <label>
-          Image URL
-          <input
+          <button onClick={this.uploadImage}>Upload Bench Image</button>
+          {/* <input
             onChange={this.handleChange('image_url')}
             value={this.state.image_url}
-          />
+          /> */}
         </label>
         <label>
           Seating
