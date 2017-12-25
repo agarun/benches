@@ -19,6 +19,9 @@ const App = () => (
       <AuthRoute path="/signup" component={SessionFormContainer} />
       <Route exact path="/" component={SearchContainer} />
       <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
+      {/* TODO: The review form currently exists on the bench show page,
+      but the form *display* should be protected. Solution: move to
+      its own page. */}
       <Route exact path="/benches/:benchId" component={BenchShowContainer} />
     </Switch>
   </div>

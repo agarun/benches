@@ -8,6 +8,7 @@ class BenchForm extends Component {
       lat: this.props.lat,
       lng: this.props.lng,
       description: '',
+      image_url: '',
       seating: 1,
     };
 
@@ -47,8 +48,15 @@ class BenchForm extends Component {
         <label>
           Longitude
           <input
-            onChange={this.handleChange('description')}
+            onChange={this.handleChange('lng')}
             value={this.state.lng}
+          />
+        </label>
+        <label>
+          Image URL
+          <input
+            onChange={this.handleChange('image_url')}
+            value={this.state.image_url}
           />
         </label>
         <label>

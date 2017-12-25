@@ -2,6 +2,8 @@ import React from 'react';
 
 const BenchIndexItem = ({ bench }) => (
   <p>
+    <img src={bench.image_url} width="50px" height="50px" />
+    <br />
     <strong>Description</strong>:
     <br />
     {bench.description}

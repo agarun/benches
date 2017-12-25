@@ -25,6 +25,7 @@ class BenchShow extends React.Component {
           <Link to="/">See All Benches</Link>
 
           <ul>
+            <img src={this.bench.image_url} width="50px" height="50px" />
             <li>Description: {this.bench.description}</li>
             <li>Average Rating: {this.bench.average_rating}</li>
             <li>Latitude: {this.bench.lat}</li>
